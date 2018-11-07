@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-#创建两个线程，使用共享全局变量isshow
+#创建两个线程，使用共享全局变量isshow,把isshow变成boolean型变量会有问题！？
 import  time
 import  threading
 
