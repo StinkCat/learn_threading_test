@@ -5,15 +5,15 @@ import multiprocessing as mp
 def show(isshow):
     while True:
         while isshow.value == 1:
-            print("线程1进行中")
-            time.sleep(.1)
+            print("进程1进行中")
+            # time.sleep(.1)
 def is_show(isshow):
     while True:
         miao = int(time.time())
         if miao % 2 == 0 :
             isshow.value = 0
-            print("线程2来了" + str(miao))
-            time.sleep(.1)
+            print("进程2来了" + str(miao))
+            # time.sleep(.1)
         else:
             isshow.value = 1
 
@@ -23,3 +23,4 @@ if __name__ == '__main__':
     m1.start()
     m2 = mp.Process(target=is_show,args=(isshow,))
     m2.start()
+    #执行是相当与开启了3个进程
