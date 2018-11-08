@@ -1,3 +1,6 @@
+# -*- coding: UTF-8 -*-
+#利用抓取到的MIUI天气分钟级接口实时监测未来两小时天气预警
+#实现功能：提示天气情况，未来两小时将要下雨的话电脑会发出“哔哔哔”告警
 import multiprocessing as mp
 import  threading
 import winsound
