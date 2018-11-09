@@ -15,13 +15,14 @@ def Myprint(): #次线程打印输出
     while True:
             nowTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             print(nowTime+" : "+Tips)
-            time.sleep(3)
+            time.sleep(5)
 
 def Warning(iswarn): #次进程发出告警
     while True:
         while iswarn.value ==1:
             winsound.Beep(520, 1000)
             time.sleep(1)
+        time.sleep(5)
 def getlocation(): #获取经纬度的地理位置
     pass
 def getWeather():
@@ -40,7 +41,7 @@ def getWeather():
     return [headDescription,Tips,rainfall]
     pass
 if __name__ == '__main__':
-    Sleeptime = 15
+    Sleeptime = 60
     Tips = "正在监测未来两小时天气预警"
     My_print = threading.Thread(target=Myprint)
     My_print.start()
@@ -56,6 +57,6 @@ if __name__ == '__main__':
             if temp > 0:
                 iswarn.value = 1
                 Tips = "{0},{1}分钟后降雨量为{2}".format(results[1],Min,temp)
-                Sleeptime = 5
+                Sleeptime = 10
                 break
         time.sleep(Sleeptime)
