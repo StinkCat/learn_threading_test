@@ -25,7 +25,7 @@ def Warning(iswarn): #次进程发出告警
 def getlocation(): #获取经纬度的地理位置
     pass
 def getWeather():
-    url = 'https://weatherapi.market.xiaomi.com/wtr-v3/weather/xm/forecast/minutely?latitude='+str(lat)+'&longitude='+str(lon)+'&locale=zh_cn&isGlobal=false&appKey=weather20151010&locationKey=weathercn%2b101010101&sign=jieyongAPI0buhuilanyong'
+    url = 'https://weatherapi.market.xiaomi.com/wtr-v3/weather/xm/forecast/minutely?latitude='+str(lat)+'&longitude='+str(lon)+'&locale=zh_cn&isGlobal=false&appKey=weather20151010&locationKey=weathercn%6b101010101&sign=LetMeborrowIt'
     headers = {
         'Accept-Encoding': 'gzip',
         'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 8.0.0; MI 6 MIUI/V10.0.2.0.OCACNFH)',
