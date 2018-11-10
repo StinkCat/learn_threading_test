@@ -2,28 +2,33 @@
 
 
 #利用抓取到的MIUI天气分钟级接口实时监测未来两小时天气预警
-#实现功能：提示天气情况，未来两小时将要下雨的话电脑会发出“哔哔哔”告警
+#实现功能：提示天气情况，未来两小时将要下雨的话电脑会发出“哔哔哔”告警，实时写入Log文件
 import  threading
 import winsound
 import datetime
 import requests
 import  time
+import os
 
 lon = 113.6076450348
 lat = 23.5923065800
-def Myprint(): #次线程打印输出
+path = os.getcwd()#获取当前路径
+def Myprint(): #打印输出
     global Tips
     while True:
             nowTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             print(nowTime+" : "+Tips)
-            time.sleep(5)
+            WeatherLog = open(path+"/WeatherLog.txt", "a", encoding='utf8')
+            WeatherLog.write(nowTime+" : "+Tips + "\n")
+            WeatherLog.close()
+            time.sleep(10)
 
-def Warning(): #次进程发出告警
+def Warning(): #发出告警
     global iswarn
     while True:
         while iswarn ==1:
             for n in range(0,10):
-                winsound.PlaySound("1.wav", winsound.SND_FILENAME)
+                winsound.PlaySound(path+"/1.wav", winsound.SND_FILENAME)
                 time.sleep(.5)
         iswarn == 0
         time.sleep(5)
@@ -46,15 +51,17 @@ def getWeather():
         return [headDescription,Tips,rainfall]
     except:
         print("TimeoutError(10060, '由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。', None, 10060, None)")
-        return ["Error","Error" , ["Error"]]
+        return ["Error","Error" , [-1]]
     pass
 if __name__ == '__main__':
     Sleeptime = 60
     Tips = "开始监测未来两小时天气预警"
     My_print = threading.Thread(target=Myprint)
+    My_print.setDaemon(True)
     My_print.start()
     iswarn =  0 # 初始赋值为0
     warn = threading.Thread(target=Warning)
+    warn.setDaemon(True)
     warn.start()
     while True:
         results = getWeather()
