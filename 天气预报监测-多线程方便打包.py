@@ -10,8 +10,8 @@ import requests
 import  time
 import os
 
-lon = 113.6076450348
-lat = 23.5923065800
+lon = 114.6076450348
+lat = 29.5923065800
 path = os.getcwd()#获取当前路径
 def Myprint(): #打印输出
     global Tips
